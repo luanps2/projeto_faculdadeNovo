@@ -39,7 +39,7 @@ public class frmAgendarConsulta extends javax.swing.JFrame {
         txtDataNasc.setText(dados[5]);
         txtEndereco.setText(dados[6]);
         txtTel.setText(dados[7]);
-        txtCodConsulta.setText("");
+        txtCodConsulta.setText(" teste ");
      
         
     }
