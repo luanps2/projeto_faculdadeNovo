@@ -20,12 +20,25 @@ import model.Paciente;
  */
 public class AgendarConsulta extends Paciente {
     
+       public String[] preencher(){
+        
+        try {
+            FileReader arq = new FileReader("C:\\SistemaVacinas\\sessao.txt");
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha = lerArq.readLine();
+            String[] lista = linha.split(" ");
+            
+            return lista;
+            
+            
+        } catch (Exception e) {
+        }
+    return null;
+    }
+    
    
 
-    public void Agendar(String nome, String cpf, String dataNascimento, String endereco, String telefone, String tipoUsuario, String usuario, String codconsulta, String dataconsulta, String horaconsulta) {
-        
-      
-        
+    public void Agendar(String codconsulta, String nome, String idade, String dataconsulta, String horaconsulta,  String cpf,  String endereco, String telefone, String tipoUsuario, String usuario) {
         try {
             File f = new File("C:\\SistemaVacinas");
 
@@ -52,16 +65,25 @@ public class AgendarConsulta extends Paciente {
                 linha = lerArq.readLine();
             }
 
-            gravarArq.write(usuario + " " + tipoUsuario + " " + nome + " " + cpf + " " + dataNascimento + " " + endereco + " " + telefone + " " + codconsulta + " " + dataconsulta + " " + horaconsulta);
+            gravarArq.write(codconsulta + " " + 
+                    nome + " " + 
+                    idade + " " + 
+                    dataconsulta + " " + 
+                    horaconsulta + " " + 
+                    cpf + " " + 
+                    endereco + " " + 
+                    telefone + " " + 
+                    tipoUsuario + " " + 
+                    usuario);
 //            for (i = 1; i <= 10; i++) {
 //                gravarArq.printf("| %2d X %d = %2d |%n", i, 10, (i * 10));
 //            }
 
             arq.close();
             
-            JOptionPane.showMessageDialog(null, "\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nData de Nascimento: " + dataNascimento + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt");
+            JOptionPane.showMessageDialog(null, "\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nIdade: " + idade + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt");
 
-            System.out.printf("\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nData de Nascimento: " + dataNascimento + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt\".\n)");
+            System.out.printf("\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nIdade: " + idade + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt\".\n)");
         } catch (Exception e) {
         }
 

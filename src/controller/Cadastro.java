@@ -30,15 +30,15 @@ public class Cadastro extends Pessoa {
     public Cadastro() {
     }
 
-    public Cadastro(String nome, String cpf, String dataNacimento, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
-        super(nome, cpf, dataNacimento, endereco, telefone, tipoUsuario, usuario, senha);
+    public Cadastro(String nome, String cpf, int idade, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
+        super(nome, cpf, idade, endereco, telefone, tipoUsuario, usuario, senha);
     }
 
-    public void CadastrarPaciente(String nome, String cpf, String data, String endereco, String telefone, String tipo, String usuario, String senha) {
+    public void CadastrarPaciente(String nome, String cpf, int idade, String endereco, String telefone, String tipo, String usuario, String senha) {
 //
 //        Paciente p = new Paciente(nome, cpf, data, endereco, telefone, tipo, usuario, senha);
 //        paciente.add(p);
-        CadastroTexto(nome, cpf, data, endereco, telefone, tipo, usuario, senha);
+        CadastroTexto(nome, cpf, idade, endereco, telefone, tipo, usuario, senha);
 
         JOptionPane.showMessageDialog(null, "Dados cadastrados com Sucesso " + nome
                 + "\nSeu usuário é: " + nome
@@ -46,11 +46,11 @@ public class Cadastro extends Pessoa {
 
     }
 
-    public void Cadastrar(String nome, String cpf, String data, String endereco, String telefone, String tipo, String usuario, String senha, String cod) {
+    public void Cadastrar(String nome, String cpf, int idade, String endereco, String telefone, String tipo, String usuario, String senha, String cod) {
 //
 //        Paciente p = new Paciente(nome, cpf, data, endereco, telefone, tipo, usuario, senha);
 //        paciente.add(p);
-        CadastroTexto(nome, cpf, data, endereco, telefone, tipo, usuario, senha);
+        CadastroTexto(nome, cpf, idade, endereco, telefone, tipo, usuario, senha);
 
         JOptionPane.showMessageDialog(null, "Dados cadastrados com Sucesso " + nome
                 + "\nSeu usuário é: " + nome
@@ -58,11 +58,11 @@ public class Cadastro extends Pessoa {
 
     }
 
-    public void CadastrarCod(String nome, String cpf, String data, String endereco, String telefone, String tipo, String usuario, String senha, String cod) {
+    public void CadastrarCod(String nome, String cpf, int idade, String endereco, String telefone, String tipo, String usuario, String senha, String cod) {
 //
-//        Paciente p = new Paciente(nome, cpf, data, endereco, telefone, tipo, usuario, senha);
+//        Paciente p = new Paciente(nome, cpf, idade, endereco, telefone, tipo, usuario, senha);
 //        paciente.add(p);
-        CadastroTextoCod(nome, cpf, data, endereco, telefone, tipo, usuario, senha, cod);
+        CadastroTextoCod(nome, cpf, idade, endereco, telefone, tipo, usuario, senha, cod);
 
         JOptionPane.showMessageDialog(null, "Dados cadastrados com Sucesso "
                 + "\nSeu usuário é: " + usuario
@@ -70,18 +70,18 @@ public class Cadastro extends Pessoa {
 
     }
 
-    public void DadosPaciente() {
-        JOptionPane.showMessageDialog(null, "Dados do Paciente"
-                + "\n Nome: " + getNome()
-                + "\nCPF: " + getCpf()
-                + "\nData de Nascimento: " + getDataNacimento()
-                + "\nEndereço: " + getEndereco()
-                + "\nTelefone: " + getTelefone()
-                + "\nTipo: " + getTipoUsuario()
-                + "\nUsuário: " + getUsuario()
-                + "\nSenha do Usuário: " + getSenha());
-
-        //
+//    public void DadosPaciente() {
+//        JOptionPane.showMessageDialog(null, "Dados do Paciente"
+//                + "\n Nome: " + getNome()
+//                + "\nCPF: " + getCpf()
+//                + "\nIdade: " + getIdade()
+//                + "\nEndereço: " + getEndereco()
+//                + "\nTelefone: " + getTelefone()
+//                + "\nTipo: " + getTipoUsuario()
+//                + "\nUsuário: " + getUsuario()
+//                + "\nSenha do Usuário: " + getSenha());
+//
+//        
 //        setNome(nome);
 //        setCpf(cpf);
 //        setDataNacimento(data);
@@ -90,7 +90,7 @@ public class Cadastro extends Pessoa {
 //        setTipoUsuario(tipo);
 //        setUsuario(usuario);
 //        setSenha(senha);
-    }
+//    }
 
     public boolean LoginPaciente(String user, String senha) {
 
@@ -117,8 +117,10 @@ public class Cadastro extends Pessoa {
         return true;
     }
 
-    public void CadastroTexto(String nome, String cpf, String dataNacimento, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
+    public void CadastroTexto(String nome, String cpf, int idade, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
 
+        ListaPacientes(nome);
+        
         try {
 
             File f = new File("C:\\SistemaVacinas");
@@ -136,6 +138,8 @@ public class Cadastro extends Pessoa {
             FileReader ler = new FileReader("C:\\SistemaVacinas\\usuarios.txt");
             BufferedReader lerArq = new BufferedReader(ler);
             String linha = lerArq.readLine();
+            
+            
 
             FileWriter arq = new FileWriter("C:\\SistemaVacinas\\usuarios.txt");
             int i;
@@ -146,7 +150,7 @@ public class Cadastro extends Pessoa {
                 linha = lerArq.readLine();
             }
 
-            gravarArq.write(usuario + " " + senha + " " + tipoUsuario + " " + nome + " " + cpf + " " + dataNacimento + " " + endereco + " " + telefone);
+            gravarArq.write(usuario + " " + senha + " " + tipoUsuario + " " + nome + " " + cpf + " " + idade + " " + endereco + " " + telefone);
 //            for (i = 1; i <= 10; i++) {
 //                gravarArq.printf("| %2d X %d = %2d |%n", i, 10, (i * 10));
 //            }
@@ -159,7 +163,7 @@ public class Cadastro extends Pessoa {
 
     }
 
-    public void CadastroTextoCod(String nome, String cpf, String dataNacimento, String endereco, String telefone, String tipoUsuario, String usuario, String senha, String cod) {
+    public void CadastroTextoCod(String nome, String cpf, int idade, String endereco, String telefone, String tipoUsuario, String usuario, String senha, String cod) {
 
         try {
             File f = new File("C:\\SistemaVacinas");
@@ -187,7 +191,7 @@ public class Cadastro extends Pessoa {
                 linha = lerArq.readLine();
             }
 
-            gravarArq.write(usuario + " " + senha + " " + tipoUsuario + " " + nome + " " + cpf + " " + dataNacimento + " " + endereco + " " + telefone + " " + cod);
+            gravarArq.write(usuario + " " + senha + " " + tipoUsuario + " " + nome + " " + cpf + " " + idade + " " + endereco + " " + telefone + " " + cod);
 //            for (i = 1; i <= 10; i++) {
 //                gravarArq.printf("| %2d X %d = %2d |%n", i, 10, (i * 10));
 //            }
@@ -202,6 +206,8 @@ public class Cadastro extends Pessoa {
 
     public void logintexto(String user, String pass) {
 
+        Session s = new Session();
+        
         try {
             FileReader arq = new FileReader("C:\\SistemaVacinas\\usuarios.txt");
             BufferedReader lerArq = new BufferedReader(arq);
@@ -214,7 +220,7 @@ public class Cadastro extends Pessoa {
                 String[] lista = linha.split(" ");
 
                 if (lista[0].equals(user) && lista[1].equals(pass)) {
-                    sessao(linha);
+                    s.sessao(linha);
                     JOptionPane.showMessageDialog(null, "Bem vindo " + user);
                     if (lista[2].equals("Paciente")) {
                         frmAgendarConsulta agendar = new frmAgendarConsulta();
@@ -230,7 +236,7 @@ public class Cadastro extends Pessoa {
                     }
                 }
 
-                System.out.printf("%s\n", linha);
+                System.out.printf("%s\n", linha);//imprime todos usuarios no console para facilitar o acesso
 
                 linha = lerArq.readLine(); // lê da segunda até a última linha
             }
@@ -254,48 +260,47 @@ public class Cadastro extends Pessoa {
 //        return true;
     }
 
-    public void sessao(String l) {
+    public void ListaPacientes(String nome) {
         try {
             File f = new File("C:\\SistemaVacinas");
 
             if (!f.exists()) {
                 f.mkdirs();
             }
-            
 
-            FileWriter arq = new FileWriter("C:\\SistemaVacinas\\sessao.txt");
+            f = new File("C:\\SistemaVacinas\\pacientes.txt");
+
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+
+            FileReader ler = new FileReader("C:\\SistemaVacinas\\pacientes.txt");
+            BufferedReader lerArq = new BufferedReader(ler);
+            String linha = lerArq.readLine();
+
+            FileWriter arq = new FileWriter("C:\\SistemaVacinas\\pacientes.txt");
             int i;
             PrintWriter gravarArq = new PrintWriter(arq);
 
-            gravarArq.println(l);
-           
+            while (linha != null) {
+                gravarArq.println(linha);
+                linha = lerArq.readLine();
+            }
+
+            gravarArq.write(nome);
 //            for (i = 1; i <= 10; i++) {
 //                gravarArq.printf("| %2d X %d = %2d |%n", i, 10, (i * 10));
 //            }
 
             arq.close();
 
-            System.out.printf("\nDados gravados em sessão! " + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\sessao.txt\".\n)");
+            System.out.printf("\nDados do usuario " + nome + " (Inseridos com sucesso! \"C:\\SistemaVacinas\\pacientes.txt\".\n)");
         } catch (Exception e) {
         }
 
     }
     
-    public String[] preencher(){
-        
-        try {
-            FileReader arq = new FileReader("C:\\SistemaVacinas\\sessao.txt");
-            BufferedReader lerArq = new BufferedReader(arq);
-            String linha = lerArq.readLine();
-            String[] lista = linha.split(" ");
-            
-            return lista;
-            
-            
-        } catch (Exception e) {
-        }
-    return null;
-    }
+ 
     
     public void geracodconsulta(){
     

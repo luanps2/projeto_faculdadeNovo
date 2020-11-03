@@ -45,14 +45,14 @@ public class Paciente extends Pessoa{
     }
 
  
-    public Paciente(String nome, String cpf, String dataNacimento, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
-        super(nome, cpf, dataNacimento, endereco, telefone, tipoUsuario, usuario, senha);
+    public Paciente(String nome, String cpf, int idade, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
+        super(nome, cpf, idade, endereco, telefone, tipoUsuario, usuario, senha);
     }
     
     public void ImprimeDadosPaciente(){
         JOptionPane.showMessageDialog(null, "Nome: " + getNome() + 
                 "CPF: " + getCpf() + 
-                "Data de Nascimento: " + getDataNacimento() + 
+                "Idade: " + getIdade()+ 
                 "Endereço: " + getEndereco() + 
                 "Telefone: " + getTelefone() + 
                 "Tipo de Usuário: " + getTipoUsuario() + 

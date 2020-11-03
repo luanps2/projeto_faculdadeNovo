@@ -5,17 +5,98 @@
  */
 package view;
 
+import controller.AplicarVacina;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Luan Costa
  */
 public class frmAplicarVacina extends javax.swing.JFrame {
 
+    AplicarVacina av = new AplicarVacina();
+
+    File vacinas = new File("C:\\SistemaVacinas\\vacinas.txt"); //Arquivo com as Vacinas
+    File pacientes = new File("C:\\SistemaVacinas\\pacientes.txt"); //Arquivo com os nomes dos Pacientes
+
     /**
      * Creates new form frmAplicarVacina
      */
     public frmAplicarVacina() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+        txtIdadeP.setText("");
+        AplicarVacina av =  new AplicarVacina();
+        av.CriarVacinas();
+
+        //Listar Vacinas em JComboBox
+        try {
+            FileReader fr = new FileReader(vacinas);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = br.readLine();
+
+            while (linha != null) {
+                jcVacina.addItem(linha);
+                linha = br.readLine();
+
+            }
+
+            fr.close();
+
+        } catch (IOException e) {
+            System.err.printf("Erro na leitura do Arquivo: %s.\n",
+                    e.getMessage());
+        }
+
+        //Listar Pacientes em JComboBox
+        try {
+            FileReader fr = new FileReader(pacientes);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = br.readLine();
+
+            while (linha != null) {
+                jcPaciente.addItem(linha);
+                linha = br.readLine();
+
+            }
+
+            fr.close();
+
+        } catch (IOException e) {
+            System.err.printf("Erro na leitura do Arquivo: %s.\n",
+                    e.getMessage());
+        }
+
+        //Carrega Tabela com dados de agendamentos
+        String agendamentos = "C:\\SistemaVacinas\\receitas.txt";
+        File file = new File(agendamentos);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+//            String firstLine = br.readLine().trim();
+//            String[] NomeColunas = firstLine.split(" ");
+            DefaultTableModel model = (DefaultTableModel) jtAgendamentos.getModel();
+//            model.setColumnIdentifiers(NomeColunas);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(" ");
+                model.addRow(dataRow);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -27,32 +108,133 @@ public class frmAplicarVacina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jcPaciente = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jcVacina = new javax.swing.JComboBox<>();
+        btnAplicarVacina = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtIdadeP = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtAgendamentos = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+
+        jCheckBox1.setText("jCheckBox1");
+
+        jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Pesquisar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(750, 550));
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("frmAplicarVacina");
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setText("Aplicar Vacina");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(280, 10, 125, 24);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jLabel1)
-                .addContainerGap(116, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(133, 133, 133))
-        );
+        jLabel2.setText("Paciente: ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 300, 56, 16);
+
+        getContentPane().add(jcPaciente);
+        jcPaciente.setBounds(80, 300, 171, 26);
+
+        jLabel3.setText("Vacina:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 330, 42, 16);
+
+        getContentPane().add(jcVacina);
+        jcVacina.setBounds(80, 330, 173, 26);
+
+        btnAplicarVacina.setText("Aplicar Vacina");
+        btnAplicarVacina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarVacinaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAplicarVacina);
+        btnAplicarVacina.setBounds(270, 420, 112, 50);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/vacina.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(300, 40, 64, 64);
+
+        jLabel5.setText("Idade:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 360, 34, 16);
+
+        txtIdadeP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdadePActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtIdadeP);
+        txtIdadeP.setBounds(80, 360, 173, 24);
+
+        jtAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Senha Fila", "Nome", "Vacina", "Idade"
+            }
+        ));
+        jScrollPane2.setViewportView(jtAgendamentos);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(10, 120, 640, 170);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/back.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(10, 10, 50, 50);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAplicarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarVacinaActionPerformed
+        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(txtIdadeP.getText()));
+    }//GEN-LAST:event_btnAplicarVacinaActionPerformed
+
+    private void txtIdadePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadePActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdadePActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +272,21 @@ public class frmAplicarVacina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAplicarVacina;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcPaciente;
+    private javax.swing.JComboBox<String> jcVacina;
+    private javax.swing.JTable jtAgendamentos;
+    private javax.swing.JTextField txtIdadeP;
     // End of variables declaration//GEN-END:variables
 }
