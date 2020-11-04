@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmAplicarVacina extends javax.swing.JFrame {
 
-    AplicarVacina av = new AplicarVacina();
+    
 
     File vacinas = new File("C:\\SistemaVacinas\\vacinas.txt"); //Arquivo com as Vacinas
     File pacientes = new File("C:\\SistemaVacinas\\pacientes.txt"); //Arquivo com os nomes dos Pacientes
@@ -119,8 +119,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAgendamentos = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -150,10 +149,10 @@ public class frmAplicarVacina extends javax.swing.JFrame {
 
         jLabel3.setText("Vacina:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 310, 35, 14);
+        jLabel3.setBounds(30, 310, 42, 16);
 
         getContentPane().add(jcVacina);
-        jcVacina.setBounds(80, 310, 160, 20);
+        jcVacina.setBounds(80, 310, 160, 26);
 
         btnAplicarVacina.setText("Aplicar Vacina");
         btnAplicarVacina.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +161,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAplicarVacina);
-        btnAplicarVacina.setBounds(270, 420, 99, 50);
+        btnAplicarVacina.setBounds(270, 350, 112, 50);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/vacina.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -187,7 +186,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtAgendamentos);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(10, 120, 340, 170);
+        jScrollPane2.setBounds(10, 120, 640, 170);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -198,26 +197,9 @@ public class frmAplicarVacina extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(10, 10, 50, 50);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Senha fila", "Nome", "Vacina", "idade", "Dosagem"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(352, 120, 300, 170);
+        jLabel2.setText("Selecione um Paciente da Tabela");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 100, 230, 16);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,11 +208,12 @@ public class frmAplicarVacina extends javax.swing.JFrame {
 
         int posicao = jtAgendamentos.getSelectedRow();
         String senhafila = (String) jtAgendamentos.getValueAt(posicao, 0); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String idade = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
         String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String vacina = (String) jtAgendamentos.getValueAt(posicao, 2); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String idade = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
        
-        
-        av.Aplicar(senhafila, jcVacina.getSelectedItem().toString(), Integer.parseInt(idade), nome);
+        AplicarVacina av = new AplicarVacina();
+        av.Aplicar(senhafila, nome, vacina,  Integer.parseInt(idade));
 
 //        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(txtIdadeP.getText()));
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
@@ -289,12 +272,11 @@ public class frmAplicarVacina extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcVacina;
     private javax.swing.JTable jtAgendamentos;

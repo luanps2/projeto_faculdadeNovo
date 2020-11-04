@@ -81,7 +81,7 @@ public class AgendarConsulta extends Paciente {
 
             arq.close();
             
-            JOptionPane.showMessageDialog(null, "\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nIdade: " + idade + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt");
+            JOptionPane.showMessageDialog(null, "\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + nome + "\nCPF: " + cpf + "" + "\nIdade: " + idade + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt");
 
             System.out.printf("\nDados do Agendamento" + "\nCód da Consulta: " + codconsulta +  "\n Nome:" + usuario + "\nCPF: " + cpf + "" + "\nIdade: " + idade + "\nEndereço: " + endereco + "\nTelefone" + telefone + "\nData da Consulta: " + dataconsulta + "\nHora da Consulta: " + horaconsulta + "\n(Inseridos com sucesso! \"C:\\SistemaVacinas\\agendamentos.txt\".\n)");
         } catch (Exception e) {
