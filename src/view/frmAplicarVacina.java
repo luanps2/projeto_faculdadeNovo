@@ -227,8 +227,9 @@ public class frmAplicarVacina extends javax.swing.JFrame {
 
         int posicao = jtAgendamentos.getSelectedRow();
         String idade = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
         
-        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(idade));
+        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(idade), nome);
 
 //        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(txtIdadeP.getText()));
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
