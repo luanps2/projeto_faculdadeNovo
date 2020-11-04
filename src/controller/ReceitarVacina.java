@@ -66,7 +66,7 @@ public class ReceitarVacina {
 
             arq.close();
             
-            JOptionPane.showMessageDialog(null, "\nDados do Agendamento \nCód da Consulta:" + cod + " \nNome: " + nome + "\nVacina: " + vacina + "\nIdade" + idade + "\n(Dados Inseridos com sucesso em \"C:\\SistemaVacinas\\receitas.txt");
+            JOptionPane.showMessageDialog(null, "\nDados do Agendamento \nCód da Consulta: " + cod + " \nNome: " + nome + "\nVacina: " + vacina + "\nIdade: " + idade + "\n(Dados Inseridos com sucesso em \"C:\\SistemaVacinas\\receitas.txt");
 
             System.out.printf("\nDados do Agendamento" + "\nCód da Consulta:" + cod + "\nNome: " + nome + "\nVacina: " + vacina + "\nIdade" + idade +  "\n(Dados Inseridos com sucesso em\"C:\\SistemaVacinas\\receitas.txt");
         } catch (Exception e) {

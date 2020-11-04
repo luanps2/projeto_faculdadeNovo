@@ -34,7 +34,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         txtIdadeP.setText("");
-        AplicarVacina av =  new AplicarVacina();
+        AplicarVacina av = new AplicarVacina();
         av.CriarVacinas();
 
         //Listar Vacinas em JComboBox
@@ -163,7 +163,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
         jLabel3.setBounds(30, 330, 42, 16);
 
         getContentPane().add(jcVacina);
-        jcVacina.setBounds(80, 330, 173, 26);
+        jcVacina.setBounds(80, 330, 160, 26);
 
         btnAplicarVacina.setText("Aplicar Vacina");
         btnAplicarVacina.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +197,15 @@ public class frmAplicarVacina extends javax.swing.JFrame {
             new String [] {
                 "Senha Fila", "Nome", "Vacina", "Idade"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jtAgendamentos);
 
         getContentPane().add(jScrollPane2);
@@ -216,7 +224,13 @@ public class frmAplicarVacina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAplicarVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarVacinaActionPerformed
-        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(txtIdadeP.getText()));
+
+        int posicao = jtAgendamentos.getSelectedRow();
+        String idade = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        
+        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(idade));
+
+//        av.Aplicar(jcVacina.getSelectedItem().toString(), Integer.parseInt(txtIdadeP.getText()));
     }//GEN-LAST:event_btnAplicarVacinaActionPerformed
 
     private void txtIdadePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadePActionPerformed
@@ -232,7 +246,7 @@ public class frmAplicarVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 

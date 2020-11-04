@@ -91,7 +91,6 @@ public class Cadastro extends Pessoa {
 //        setUsuario(usuario);
 //        setSenha(senha);
 //    }
-
     public boolean LoginPaciente(String user, String senha) {
 
 //        {
@@ -120,7 +119,7 @@ public class Cadastro extends Pessoa {
     public void CadastroTexto(String nome, String cpf, int idade, String endereco, String telefone, String tipoUsuario, String usuario, String senha) {
 
         ListaPacientes(nome);
-        
+
         try {
 
             File f = new File("C:\\SistemaVacinas");
@@ -138,8 +137,6 @@ public class Cadastro extends Pessoa {
             FileReader ler = new FileReader("C:\\SistemaVacinas\\usuarios.txt");
             BufferedReader lerArq = new BufferedReader(ler);
             String linha = lerArq.readLine();
-            
-            
 
             FileWriter arq = new FileWriter("C:\\SistemaVacinas\\usuarios.txt");
             int i;
@@ -207,7 +204,7 @@ public class Cadastro extends Pessoa {
     public void logintexto(String user, String pass) {
 
         Session s = new Session();
-        
+
         try {
             FileReader arq = new FileReader("C:\\SistemaVacinas\\usuarios.txt");
             BufferedReader lerArq = new BufferedReader(arq);
@@ -215,7 +212,7 @@ public class Cadastro extends Pessoa {
             String linha = lerArq.readLine(); // lê a primeira linha
 // a variável "linha" recebe o valor "null" quando o processo
 // de repetição atingir o final do arquivo texto
-            while (linha != null) {
+            do {
 
                 String[] lista = linha.split(" ");
 
@@ -231,15 +228,16 @@ public class Cadastro extends Pessoa {
                     } else if (lista[2].equals("Medico")) {
                         frmReceitarVacina receitar = new frmReceitarVacina();
                         receitar.setVisible(true);
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Dados Inválidos!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Dados Inválidos " + user + "! \nverifique seus dados e tente novamente.");
                     }
                 }
 
                 System.out.printf("%s\n", linha);//imprime todos usuarios no console para facilitar o acesso
 
                 linha = lerArq.readLine(); // lê da segunda até a última linha
-            }
+
+            } while (linha != null);
 
             arq.close();
         } catch (IOException e) {
@@ -299,13 +297,9 @@ public class Cadastro extends Pessoa {
         }
 
     }
-    
- 
-    
-    public void geracodconsulta(){
-    
-    
 
-}
+    public void geracodconsulta() {
+
+    }
 
 }

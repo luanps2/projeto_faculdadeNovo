@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.AgendarConsulta;
 import controller.AplicarVacina;
 import controller.ReceitarVacina;
 import java.io.BufferedReader;
@@ -21,10 +22,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Luan Costa
  */
 public class frmReceitarVacina extends javax.swing.JFrame {
-    
+    AgendarConsulta a = new AgendarConsulta();
+
     File vacinas = new File("C:\\SistemaVacinas\\vacinas.txt"); //Arquivo com as Vacinas
     File pacientes = new File("C:\\SistemaVacinas\\pacientes.txt"); //Arquivo com os nomes dos Pacientes
-    
+
     ReceitarVacina r = new ReceitarVacina();
     String[] dados = r.PopularPaciente();
 
@@ -32,13 +34,13 @@ public class frmReceitarVacina extends javax.swing.JFrame {
      * Creates new form frmReceitarVacina
      */
     public frmReceitarVacina() {
-        
+
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        AplicarVacina av =  new AplicarVacina();
+        AplicarVacina av = new AplicarVacina();
         av.CriarVacinas();
-        
+
         Random gerador = new Random();
         int cod = gerador.nextInt(999);
 
@@ -53,8 +55,8 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             armazenaChaves += letras.substring(index, index + 1);
         }
         System.out.println(armazenaChaves);
-        txtSenhaFila.setText(( armazenaChaves + Integer.toString(cod)));
-     
+        txtSenhaFila.setText((armazenaChaves + Integer.toString(cod)));
+
         //Listar Vacinas em JComboBox
         try {
             FileReader fr = new FileReader(vacinas);
@@ -73,11 +75,8 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             System.err.printf("Erro na leitura do Arquivo: %s.\n",
                     e.getMessage());
         }
-        
-       
+
         jcPaciente.addItem(dados[0]);
-        
-        
 
         //Listar Pacientes em JComboBox
         try {
@@ -97,8 +96,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             System.err.printf("Erro na leitura do Arquivo: %s.\n",
                     e.getMessage());
         }
-        
-        
+
         //Carrega Tabela com dados de agendamentos
         String agendamentos = "C:\\SistemaVacinas\\agendamentos.txt";
         File file = new File(agendamentos);
@@ -106,26 +104,21 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             BufferedReader br = new BufferedReader(new FileReader(file));
 //            String firstLine = br.readLine().trim();
 //            String[] NomeColunas = firstLine.split(" ");
-            DefaultTableModel model = (DefaultTableModel)jtAgendamentos.getModel();
+            DefaultTableModel model = (DefaultTableModel) jtAgendamentos.getModel();
 //            model.setColumnIdentifiers(NomeColunas);
-            
+
             Object[] tableLines = br.lines().toArray();
-            
+
             for (int i = 0; i < tableLines.length; i++) {
-             String line = tableLines[i].toString().trim();
-             String[] dataRow = line.split(" ");
-             model.addRow(dataRow);
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(" ");
+                model.addRow(dataRow);
             }
-            
-            
+
         } catch (Exception ex) {
             Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
 
-        
     }
 
     /**
@@ -148,7 +141,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         btnReceitar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAgendamentos = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtIdadeP = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -173,6 +165,16 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 310, 42, 16);
 
+        jcPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcPacienteMouseClicked(evt);
+            }
+        });
+        jcPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jcPacienteKeyReleased(evt);
+            }
+        });
         getContentPane().add(jcPaciente);
         jcPaciente.setBounds(90, 270, 140, 26);
         getContentPane().add(jLabel3);
@@ -199,22 +201,21 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome Paciente", "Idade", "Data Consulta", "Horário", "CPF", "Endereço", "Telefone", "Tipo", "Usuário"
+                "Código", "Nome Paciente", "Idade", "Vacina", "Data Consulta", "Horário", "CPF", "Endereço", "Telefone", "Tipo", "Usuário"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jtAgendamentos);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 90, 640, 130);
-
-        jButton2.setText("Atualizar Lista");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(490, 230, 170, 40);
 
         jLabel5.setText("Idade:");
         getContentPane().add(jLabel5);
@@ -259,12 +260,26 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitarActionPerformed
-        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
+
+        int posicao = jtAgendamentos.getSelectedRow();
+
+        String senhafila = (String) jtAgendamentos.getValueAt(posicao, 0); //pega a linha escolhida e a posição da coluna zero
+        String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String idade = (String) jtAgendamentos.getValueAt(posicao, 2); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String data = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String cpf = (String) jtAgendamentos.getValueAt(posicao, 4); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String endereco = (String) jtAgendamentos.getValueAt(posicao, 5); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String telefone = (String) jtAgendamentos.getValueAt(posicao, 6); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String tipo = (String) jtAgendamentos.getValueAt(posicao, 7); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        String usuario = (String) jtAgendamentos.getValueAt(posicao, 8); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+
+//        JOptionPane.showMessageDialog(null,"coluna 1" + nome);
+//        JOptionPane.showMessageDialog(null,"coluna 2" + sobrenome);
+//        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
+        r.Receitar(senhafila, nome, jcVacina.getSelectedItem().toString(), idade);
+
+//        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
     }//GEN-LAST:event_btnReceitarActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtIdadePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadePActionPerformed
         // TODO add your handling code here:
@@ -278,6 +293,30 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jcPacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcPacienteKeyReleased
+        
+    }//GEN-LAST:event_jcPacienteKeyReleased
+
+    private void jcPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcPacienteMouseClicked
+           String[] dados = a.preencher();
+
+        Random gerador = new Random();
+        int cod = gerador.nextInt(999);
+
+        String letras = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
+
+        Random random = new Random();
+
+        String armazenaChaves = "";
+        int index = -1;
+        for (int i = 0; i < 2; i++) {
+            index = random.nextInt(letras.length());
+            armazenaChaves += letras.substring(index, index + 1);
+        }
+
+       txtSenhaFila.setText((armazenaChaves + Integer.toString(cod)));
+    }//GEN-LAST:event_jcPacienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -316,7 +355,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReceitar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

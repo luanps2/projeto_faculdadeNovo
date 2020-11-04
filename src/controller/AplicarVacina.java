@@ -128,7 +128,7 @@ public class AplicarVacina {
             int i;
             PrintWriter gravarArq = new PrintWriter(arq);
 
-            while (linha != null) {
+            while (linha == null) {
                 gravarArq.println(linha);
                 linha = lerArq.readLine();
             }
