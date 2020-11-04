@@ -20,7 +20,7 @@ public class AplicarVacina {
 
     double dose;
 
-    public void Aplicar(String vacina, int idade) {
+    public void Aplicar(String vacina, int idade, String nome) {
 
         //Vacina Sarampo
         if (vacina.equals("Sarampo")) {
@@ -101,7 +101,8 @@ public class AplicarVacina {
             }
         }
 
-        JOptionPane.showMessageDialog(null, "Vacina de " + vacina + " com dosagem de " + dose + "ML Aplicada com Sucesso!");
+        JOptionPane.showMessageDialog(null, "O Paciente " + nome + " tem " + idade + " Anos, "
+                + "\nVacina de  " + vacina + " com dosagem de " + dose + "ML Aplicada com Sucesso!");
 
     }
     

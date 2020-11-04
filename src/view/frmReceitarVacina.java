@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -262,21 +263,18 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     private void btnReceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitarActionPerformed
 
         int posicao = jtAgendamentos.getSelectedRow();
-
+        
+        if (jtAgendamentos.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um paciente");
+        }else{
         String senhafila = (String) jtAgendamentos.getValueAt(posicao, 0); //pega a linha escolhida e a posição da coluna zero
         String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
         String idade = (String) jtAgendamentos.getValueAt(posicao, 2); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String data = (String) jtAgendamentos.getValueAt(posicao, 3); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String cpf = (String) jtAgendamentos.getValueAt(posicao, 4); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String endereco = (String) jtAgendamentos.getValueAt(posicao, 5); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String telefone = (String) jtAgendamentos.getValueAt(posicao, 6); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String tipo = (String) jtAgendamentos.getValueAt(posicao, 7); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String usuario = (String) jtAgendamentos.getValueAt(posicao, 8); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
 
-//        JOptionPane.showMessageDialog(null,"coluna 1" + nome);
-//        JOptionPane.showMessageDialog(null,"coluna 2" + sobrenome);
-//        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
         r.Receitar(senhafila, nome, jcVacina.getSelectedItem().toString(), idade);
+        }
+        
+        
 
 //        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
     }//GEN-LAST:event_btnReceitarActionPerformed
