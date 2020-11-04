@@ -16,13 +16,22 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Luan Costa
  */
 public class frmReceitarVacina extends javax.swing.JFrame {
+
+    public void pesquisarAgendamento(String query) {
+        
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>();
+        jtAgendamentos.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
 
     AgendarConsulta a = new AgendarConsulta();
 
@@ -118,7 +127,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 //Carrega tabela com Vacinas aplicadas
         String vacinasaplicadas = "C:\\SistemaVacinas\\vacinasaplicadas.txt";
         File file2 = new File(vacinasaplicadas);
@@ -140,10 +149,8 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        
+
+        //Pesquisar Agendamentos
     }
 
     /**
@@ -170,10 +177,14 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jcVacina = new javax.swing.JComboBox<>();
         btnReceitar = new javax.swing.JButton();
+        txtPesquisaAgendamento = new javax.swing.JTextField();
+        btnPesquisarAgendamento = new javax.swing.JToggleButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtVacinasAplicadas = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         jLabel11.setText("Cód Consulta:");
 
@@ -247,19 +258,37 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             }
         });
 
+        txtPesquisaAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaAgendamentoActionPerformed(evt);
+            }
+        });
+        txtPesquisaAgendamento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisaAgendamentoKeyReleased(evt);
+            }
+        });
+
+        btnPesquisarAgendamento.setText("Pesquisar");
+        btnPesquisarAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarAgendamentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(335, 335, 335))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -269,32 +298,42 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(273, 273, 273)
-                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPesquisarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPesquisarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
 
         jTabbedPane1.addTab("Consultas Agendadas", jPanel1);
@@ -320,6 +359,8 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jtVacinasAplicadas);
 
+        jToggleButton1.setText("Pesquisar");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -327,10 +368,14 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 570, Short.MAX_VALUE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -338,15 +383,19 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(jTextField1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Vacinas Aplicadas", jPanel2);
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 60, 720, 360);
+        jTabbedPane1.setBounds(10, 60, 720, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -376,6 +425,21 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnPesquisarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAgendamentoActionPerformed
+
+
+    }//GEN-LAST:event_btnPesquisarAgendamentoActionPerformed
+
+    private void txtPesquisaAgendamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaAgendamentoKeyReleased
+        String query = txtPesquisaAgendamento.getText().toLowerCase();
+        
+        pesquisarAgendamento(query);
+    }//GEN-LAST:event_txtPesquisaAgendamentoKeyReleased
+
+    private void txtPesquisaAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaAgendamentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaAgendamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,6 +477,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnPesquisarAgendamento;
     private javax.swing.JButton btnReceitar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -427,10 +492,13 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> jcVacina;
     private javax.swing.JTable jtAgendamentos;
     private javax.swing.JTable jtVacinasAplicadas;
     private javax.swing.JTextField txtCodConsulta;
+    private javax.swing.JTextField txtPesquisaAgendamento;
     private javax.swing.JTextField txtSenhaFila;
     // End of variables declaration//GEN-END:variables
 }
