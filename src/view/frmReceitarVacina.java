@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Luan Costa
  */
 public class frmReceitarVacina extends javax.swing.JFrame {
+
     AgendarConsulta a = new AgendarConsulta();
 
     File vacinas = new File("C:\\SistemaVacinas\\vacinas.txt"); //Arquivo com as Vacinas
@@ -41,7 +42,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         AplicarVacina av = new AplicarVacina();
         av.CriarVacinas();
-
+//Gerador de codigos
         Random gerador = new Random();
         int cod = gerador.nextInt(999);
 
@@ -77,20 +78,18 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                     e.getMessage());
         }
 
-        jcPaciente.addItem(dados[0]);
-
+//        jcPaciente.addItem(dados[0]);
         //Listar Pacientes em JComboBox
         try {
             FileReader fr = new FileReader(pacientes);
             BufferedReader br = new BufferedReader(fr);
             String linha = br.readLine();
 
-            while (linha != null) {
-                jcPaciente.addItem(linha);
-                linha = br.readLine();
-
-            }
-
+//            while (linha != null) {
+//                jcPaciente.addItem(linha);
+//                linha = br.readLine();
+//
+//            }
             fr.close();
 
         } catch (IOException e) {
@@ -119,7 +118,32 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//Carrega tabela com Vacinas aplicadas
+        String vacinasaplicadas = "C:\\SistemaVacinas\\vacinasaplicadas.txt";
+        File file2 = new File(vacinasaplicadas);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file2));
+//            String firstLine = br.readLine().trim();
+//            String[] NomeColunas = firstLine.split(" ");
+            DefaultTableModel model = (DefaultTableModel) jtVacinasAplicadas.getModel();
+//            model.setColumnIdentifiers(NomeColunas);
 
+            Object[] tableLines = br.lines().toArray();
+
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(" ");
+                model.addRow(dataRow);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
     }
 
     /**
@@ -133,21 +157,23 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
         jLabel11 = new javax.swing.JLabel();
         txtCodConsulta = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jcPaciente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jcVacina = new javax.swing.JComboBox<>();
-        btnReceitar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAgendamentos = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        txtIdadeP = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtSenhaFila = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jcVacina = new javax.swing.JComboBox<>();
+        btnReceitar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jtVacinasAplicadas = new javax.swing.JTable();
 
         jLabel11.setText("Cód Consulta:");
 
@@ -156,46 +182,25 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(750, 650));
         getContentPane().setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setText("Consultas Agendadas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 60, 190, 24);
-
-        jLabel2.setText("Vacina:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(40, 310, 42, 16);
-
-        jcPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jcPacienteMouseClicked(evt);
-            }
-        });
-        jcPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jcPacienteKeyReleased(evt);
-            }
-        });
-        getContentPane().add(jcPaciente);
-        jcPaciente.setBounds(90, 270, 140, 26);
         getContentPane().add(jLabel3);
         jLabel3.setBounds(305, 60, 0, 0);
 
-        jLabel4.setText("Paciente:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 270, 53, 16);
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setText("Receitar Vacina");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(280, 10, 137, 24);
 
-        getContentPane().add(jcVacina);
-        jcVacina.setBounds(90, 310, 140, 26);
-
-        btnReceitar.setText("Receitar Vacina");
-        btnReceitar.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/back.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReceitarActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnReceitar);
-        btnReceitar.setBounds(270, 340, 120, 50);
+        getContentPane().add(jButton3);
+        jButton3.setBounds(10, 10, 50, 50);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setText("Consultas Agendadas");
 
         jtAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,30 +219,17 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jtAgendamentos);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 90, 640, 130);
-
-        jLabel5.setText("Idade:");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(50, 350, 34, 16);
-
-        txtIdadeP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdadePActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtIdadeP);
-        txtIdadeP.setBounds(90, 350, 140, 24);
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setText("Receitar Vacina");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(280, 10, 137, 24);
+        if (jtAgendamentos.getColumnModel().getColumnCount() > 0) {
+            jtAgendamentos.getColumnModel().getColumn(1).setHeaderValue("Nome Paciente");
+            jtAgendamentos.getColumnModel().getColumn(5).setHeaderValue("Horário");
+            jtAgendamentos.getColumnModel().getColumn(6).setHeaderValue("CPF");
+            jtAgendamentos.getColumnModel().getColumn(7).setHeaderValue("Endereço");
+            jtAgendamentos.getColumnModel().getColumn(8).setHeaderValue("Telefone");
+            jtAgendamentos.getColumnModel().getColumn(9).setHeaderValue("Tipo");
+            jtAgendamentos.getColumnModel().getColumn(10).setHeaderValue("Usuário");
+        }
 
         jLabel12.setText("Senha Fila:");
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(20, 230, 61, 16);
 
         txtSenhaFila.setEditable(false);
         txtSenhaFila.addActionListener(new java.awt.event.ActionListener() {
@@ -245,17 +237,116 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                 txtSenhaFilaActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSenhaFila);
-        txtSenhaFila.setBounds(90, 230, 138, 24);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/back.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Vacina:");
+
+        btnReceitar.setText("Receitar Vacina");
+        btnReceitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnReceitarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(10, 10, 50, 50);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(335, 335, 335))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(17, 17, 17))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+        );
+
+        jTabbedPane1.addTab("Consultas Agendadas", jPanel1);
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setText("Vacinas Aplicadas");
+
+        jtVacinasAplicadas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Vacina", "Idade", "Dosagem"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jtVacinasAplicadas);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(0, 570, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Vacinas Aplicadas", jPanel2);
+
+        getContentPane().add(jTabbedPane1);
+        jTabbedPane1.setBounds(10, 60, 720, 360);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -263,25 +354,19 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     private void btnReceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitarActionPerformed
 
         int posicao = jtAgendamentos.getSelectedRow();
-        
+
         if (jtAgendamentos.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Selecione um paciente");
-        }else{
-        String senhafila = (String) jtAgendamentos.getValueAt(posicao, 0); //pega a linha escolhida e a posição da coluna zero
-        String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
-        String idade = (String) jtAgendamentos.getValueAt(posicao, 2); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+        } else {
+            String senhafila = (String) jtAgendamentos.getValueAt(posicao, 0); //pega a linha escolhida e a posição da coluna zero
+            String nome = (String) jtAgendamentos.getValueAt(posicao, 1); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
+            String idade = (String) jtAgendamentos.getValueAt(posicao, 2); //pega a linha escolhida e a posição da coluna um// isso vai te retornar o indice da linha selecionada.        // TODO add your handling code here:
 
-        r.Receitar(senhafila, nome, jcVacina.getSelectedItem().toString(), idade);
+            r.Receitar(senhafila, nome, jcVacina.getSelectedItem().toString(), idade);
         }
-        
-        
 
 //        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
     }//GEN-LAST:event_btnReceitarActionPerformed
-
-    private void txtIdadePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadePActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdadePActionPerformed
 
     private void txtSenhaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaFilaActionPerformed
         // TODO add your handling code here:
@@ -291,30 +376,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jcPacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jcPacienteKeyReleased
-        
-    }//GEN-LAST:event_jcPacienteKeyReleased
-
-    private void jcPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcPacienteMouseClicked
-           String[] dados = a.preencher();
-
-        Random gerador = new Random();
-        int cod = gerador.nextInt(999);
-
-        String letras = "ABCDEFGHIJKLMNOPQRSTUVYWXZ";
-
-        Random random = new Random();
-
-        String armazenaChaves = "";
-        int index = -1;
-        for (int i = 0; i < 2; i++) {
-            index = random.nextInt(letras.length());
-            armazenaChaves += letras.substring(index, index + 1);
-        }
-
-       txtSenhaFila.setText((armazenaChaves + Integer.toString(cod)));
-    }//GEN-LAST:event_jcPacienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -359,15 +420,17 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox<String> jcPaciente;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcVacina;
     private javax.swing.JTable jtAgendamentos;
+    private javax.swing.JTable jtVacinasAplicadas;
     private javax.swing.JTextField txtCodConsulta;
-    private javax.swing.JTextField txtIdadeP;
     private javax.swing.JTextField txtSenhaFila;
     // End of variables declaration//GEN-END:variables
 }

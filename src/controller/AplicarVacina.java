@@ -20,7 +20,7 @@ public class AplicarVacina {
 
     double dose;
 
-    public void Aplicar(String vacina, int idade, String nome) {
+    public void Aplicar(String senhafila, String vacina, int idade, String nome) {
 
         //Vacina Sarampo
         if (vacina.equals("Sarampo")) {
@@ -100,15 +100,15 @@ public class AplicarVacina {
                 dose = 0.95;
             }
         }
-
+        InserirVacina(senhafila, nome, vacina, idade,  dose); //Registra aplicação da vacina no sistema
         JOptionPane.showMessageDialog(null, "O Paciente " + nome + " tem " + idade + " Anos, "
                 + "\nVacina de  " + vacina + " com dosagem de " + dose + "ML Aplicada com Sucesso!");
 
     }
-    
-    public void CriarVacinas(){
-    
-    try {
+
+    public void CriarVacinas() {
+
+        try {
             File f = new File("C:\\SistemaVacinas");
 
             if (!f.exists()) {
@@ -140,21 +140,60 @@ public class AplicarVacina {
 //            }
 
             arq.close();
-            
-            System.out.print("Sarampo" + " " + 
-                    "H1N1" + " " + 
-                    "Meningite" + " " + 
-                    "Malária" + " " + 
-                    "Covid-19" + " " + 
-                    "Outra Vacina "
+
+            System.out.print("Sarampo" + " "
+                    + "H1N1" + " "
+                    + "Meningite" + " "
+                    + "Malária" + " "
+                    + "Covid-19" + " "
+                    + "Outra Vacina "
                     + "\n(Inseridos com sucesso! \"C:\\SistemaVacinas\\vacinas.txt)");
         } catch (Exception e) {
         }
     }
+
+    public void InserirVacina(String senhafila, String nome, String vacina, int idade, double dosagem) {
+        try {
+
+            File f = new File("C:\\SistemaVacinas");
+
+            if (!f.exists()) {
+                f.mkdirs();
+            }
+
+            f = new File("C:\\SistemaVacinas\\vacinasaplicadas.txt");
+
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+
+            FileReader ler = new FileReader("C:\\SistemaVacinas\\vacinasaplicadas.txt");
+            BufferedReader lerArq = new BufferedReader(ler);
+            String linha = lerArq.readLine();
+
+            FileWriter arq = new FileWriter("C:\\SistemaVacinas\\vacinasaplicadas.txt");
+            int i;
+            PrintWriter gravarArq = new PrintWriter(arq);
+
+            while (linha != null) {
+                gravarArq.println(linha);
+                linha = lerArq.readLine();
+            }
+
+            gravarArq.write(senhafila + " " + nome + " " + vacina + " " + idade + " " + dosagem);
+//            for (i = 1; i <= 10; i++) {
+//                gravarArq.printf("| %2d X %d = %2d |%n", i, 10, (i * 10));
+//            }
+
+            arq.close();
+
+            System.out.print("\nAplicação registrada no sistema \n(dados inseridos em Inseridos com sucesso! \"C:\\SistemaVacinas\\vacinasaplicadas.txt\".\n)");
+        } catch (Exception e) {
+        }
+    }
     
+    public void VacinasAplicadas(){
     
-    
-  
-    
-    
+    }
+
 }

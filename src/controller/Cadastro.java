@@ -41,7 +41,7 @@ public class Cadastro extends Pessoa {
         CadastroTexto(nome, cpf, idade, endereco, telefone, tipo, usuario, senha);
 
         JOptionPane.showMessageDialog(null, "Dados cadastrados com Sucesso " + nome
-                + "\nSeu usuário é: " + nome
+                + "\nSeu usuário é: " + usuario
                 + "\nSua Senha é: " + senha);
 
     }

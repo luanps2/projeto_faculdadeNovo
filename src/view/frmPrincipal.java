@@ -65,25 +65,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         txtCPFP = new javax.swing.JFormattedTextField();
         txtTelefoneP = new javax.swing.JFormattedTextField();
         txtEnderecoP = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        txtNomeE = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        txtUsuarioE = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        txtSenhaE = new javax.swing.JTextField();
-        jLabel31 = new javax.swing.JLabel();
-        txtEnderecoE = new javax.swing.JTextField();
-        jLabel32 = new javax.swing.JLabel();
-        btnCadastraEnfermeira = new javax.swing.JButton();
-        jLabel33 = new javax.swing.JLabel();
-        txtCPFE = new javax.swing.JFormattedTextField();
-        txtTelefoneE = new javax.swing.JFormattedTextField();
-        txtCOREN = new javax.swing.JFormattedTextField();
-        txtIdadeE = new javax.swing.JTextField();
-        jLabel44 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnCadastraMedico = new javax.swing.JButton();
         txtSenhaM = new javax.swing.JTextField();
@@ -103,6 +84,25 @@ public class frmPrincipal extends javax.swing.JFrame {
         txtCRM = new javax.swing.JFormattedTextField();
         txtIdadeM = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        txtNomeE = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        txtUsuarioE = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        txtSenhaE = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        txtEnderecoE = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        btnCadastraEnfermeira = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        txtCPFE = new javax.swing.JFormattedTextField();
+        txtTelefoneE = new javax.swing.JFormattedTextField();
+        txtCOREN = new javax.swing.JFormattedTextField();
+        txtIdadeE = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,15 +126,15 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Usuário:");
         jPanel5.add(jLabel2);
-        jLabel2.setBounds(240, 200, 47, 16);
+        jLabel2.setBounds(240, 200, 50, 14);
         jPanel5.add(txtUsuario);
-        txtUsuario.setBounds(290, 200, 148, 24);
+        txtUsuario.setBounds(290, 190, 148, 30);
 
         jLabel5.setText("Senha:");
         jPanel5.add(jLabel5);
-        jLabel5.setBounds(240, 240, 39, 16);
+        jLabel5.setBounds(240, 240, 50, 14);
         jPanel5.add(txtSenha);
-        txtSenha.setBounds(290, 230, 150, 22);
+        txtSenha.setBounds(290, 230, 150, 30);
 
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +143,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btnEntrar);
-        btnEntrar.setBounds(320, 260, 80, 40);
+        btnEntrar.setBounds(320, 270, 80, 40);
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/hospital-2_icon-icons.com_66067 (1).png"))); // NOI18N
         jPanel5.add(jLabel40);
@@ -151,19 +151,43 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Login", jPanel5);
 
+        jPanel1.setLayout(null);
+
         jLabel34.setText("Nome:");
+        jPanel1.add(jLabel34);
+        jLabel34.setBounds(120, 120, 60, 14);
+        jPanel1.add(txtNomeP);
+        txtNomeP.setBounds(160, 120, 124, 24);
 
         jLabel35.setText("Telefone");
+        jPanel1.add(jLabel35);
+        jLabel35.setBounds(300, 114, 60, 20);
+        jPanel1.add(txtUsuarioP);
+        txtUsuarioP.setBounds(360, 140, 166, 24);
 
         jLabel36.setText("Usuário:");
+        jPanel1.add(jLabel36);
+        jLabel36.setBounds(300, 140, 60, 14);
 
         jLabel37.setText("CPF:");
+        jPanel1.add(jLabel37);
+        jLabel37.setBounds(120, 150, 50, 14);
 
         jLabel38.setText("Idade:");
+        jPanel1.add(jLabel38);
+        jLabel38.setBounds(120, 180, 50, 14);
 
         jLabel39.setText("Senha:");
+        jPanel1.add(jLabel39);
+        jLabel39.setBounds(300, 170, 50, 14);
+        jPanel1.add(txtSenhaP);
+        txtSenhaP.setBounds(360, 170, 167, 24);
+        jPanel1.add(txtIdadeP);
+        txtIdadeP.setBounds(160, 180, 124, 24);
 
         jLabel41.setText("Endereço:");
+        jPanel1.add(jLabel41);
+        jLabel41.setBounds(110, 210, 70, 14);
 
         btnCadastraPaciente.setText("Cadastrar");
         btnCadastraPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -171,114 +195,183 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnCadastraPacienteActionPerformed(evt);
             }
         });
+        jPanel1.add(btnCadastraPaciente);
+        btnCadastraPaciente.setBounds(290, 250, 90, 40);
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/paciente.png"))); // NOI18N
+        jPanel1.add(jLabel42);
+        jLabel42.setBounds(290, 30, 64, 64);
 
         try {
             txtCPFP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jPanel1.add(txtCPFP);
+        txtCPFP.setBounds(162, 149, 124, 24);
 
         try {
             txtTelefoneP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(jLabel42))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(btnCadastraPaciente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel41)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel34))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtIdadeP)
-                            .addComponent(txtCPFP, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(txtNomeP)
-                            .addComponent(txtEnderecoP))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel35)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(txtTelefoneP, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel36)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(txtUsuarioP, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(jLabel39)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtSenhaP, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(232, 232, 232))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel34))
-                            .addComponent(txtNomeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel35))
-                            .addComponent(txtTelefoneP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel37))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel36))
-                                    .addComponent(txtUsuarioP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(txtCPFP, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtIdadeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel38)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtSenhaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel39))))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEnderecoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel41))
-                .addGap(12, 12, 12)
-                .addComponent(btnCadastraPaciente))
-        );
+        jPanel1.add(txtTelefoneP);
+        txtTelefoneP.setBounds(360, 110, 164, 24);
+        jPanel1.add(txtEnderecoP);
+        txtEnderecoP.setBounds(160, 210, 124, 24);
 
         jTabbedPane1.addTab("Paciente", jPanel1);
+
+        btnCadastraMedico.setText("Cadastrar");
+        btnCadastraMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastraMedicoActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Senha:");
+
+        jLabel17.setText("Usuário:");
+
+        jLabel18.setText("Telefone");
+
+        jLabel19.setText("Endereço:");
+
+        jLabel21.setText("CPF:");
+
+        jLabel22.setText("Nome:");
+
+        jLabel24.setText("CRM:");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/medico.png"))); // NOI18N
+
+        try {
+            txtTelefoneM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtCPFM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCPFM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFMActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtCRM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########-#/AA")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel45.setText("Idade:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel22)
+                                .addGap(9, 9, 9)
+                                .addComponent(txtNomeM, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel21)
+                                .addGap(7, 7, 7)
+                                .addComponent(txtCPFM, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel45)
+                                .addGap(8, 8, 8)
+                                .addComponent(txtIdadeM, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEnderecoM, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelefoneM, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUsuarioM, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSenhaM, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCadastraMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(txtNomeM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(txtCPFM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel45)
+                            .addComponent(txtIdadeM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(txtEnderecoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(txtTelefoneM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtUsuarioM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSenhaM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24))))
+                .addGap(30, 30, 30)
+                .addComponent(btnCadastraMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Médico", jPanel3);
 
         jLabel25.setText("Nome:");
 
@@ -332,10 +425,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(406, 406, 406))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -357,7 +446,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(118, 118, 118)
                                 .addComponent(jLabel32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtEnderecoE, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -380,16 +469,19 @@ public class frmPrincipal extends javax.swing.JFrame {
                                         .addComponent(txtTelefoneE, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtUsuarioE, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
-                        .addComponent(btnCadastraEnfermeira)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                        .addGap(287, 287, 287)
+                        .addComponent(btnCadastraEnfermeira, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -419,88 +511,17 @@ public class frmPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel31)
-                                    .addComponent(txtCOREN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCOREN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEnderecoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtEnderecoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel32))))))
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastraEnfermeira)
-                .addGap(82, 82, 82))
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel32)))))
+                .addGap(37, 37, 37)
+                .addComponent(btnCadastraEnfermeira, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         jTabbedPane1.addTab("Enfermeira", jPanel2);
-
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnCadastraMedico.setText("Cadastrar");
-        btnCadastraMedico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastraMedicoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnCadastraMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 272, -1, -1));
-        jPanel3.add(txtSenhaM, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 174, -1));
-
-        jLabel16.setText("Senha:");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, -1, -1));
-
-        jLabel17.setText("Usuário:");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, -1, -1));
-        jPanel3.add(txtUsuarioM, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 170, 182, -1));
-
-        jLabel18.setText("Telefone");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 144, -1, -1));
-
-        jLabel19.setText("Endereço:");
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 234, -1, -1));
-        jPanel3.add(txtEnderecoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 230, 140, -1));
-
-        jLabel21.setText("CPF:");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 166, -1, -1));
-        jPanel3.add(txtNomeM, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 140, 130, -1));
-
-        jLabel22.setText("Nome:");
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 144, -1, -1));
-
-        jLabel24.setText("CRM:");
-        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/medico.png"))); // NOI18N
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 30, -1, -1));
-
-        try {
-            txtTelefoneM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jPanel3.add(txtTelefoneM, new org.netbeans.lib.awtextra.AbsoluteConstraints(429, 142, 186, -1));
-
-        try {
-            txtCPFM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtCPFM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFMActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtCPFM, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 170, 130, 24));
-
-        try {
-            txtCRM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########-#/AA")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jPanel3.add(txtCRM, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 230, 174, 30));
-        jPanel3.add(txtIdadeM, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 200, 130, -1));
-
-        jLabel45.setText("Idade:");
-        jPanel3.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 204, -1, -1));
-
-        jTabbedPane1.addTab("Médico", jPanel3);
 
         jTabbedPane2.addTab("Cadastro", jTabbedPane1);
 
@@ -552,10 +573,10 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnCadastraPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraPacienteActionPerformed
 
-        paciente.CadastrarPaciente(txtNomeP.getText(),
+        paciente.CadastrarPaciente(txtNomeP.getText().replace(" ", "_"),
             txtCPFP.getText(),
             Integer.parseInt(txtIdadeP.getText()),
-            txtEnderecoP.getText(),
+            txtEnderecoP.getText().replace(" ", "_"),
             txtTelefoneP.getText(),
             "Paciente",
             txtUsuarioP.getText(),
