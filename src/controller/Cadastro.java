@@ -212,7 +212,7 @@ public class Cadastro extends Pessoa {
             String linha = lerArq.readLine(); // lê a primeira linha
 // a variável "linha" recebe o valor "null" quando o processo
 // de repetição atingir o final do arquivo texto
-            do {
+            while (linha != null) {
 
                 String[] lista = linha.split(" ");
 
@@ -228,16 +228,14 @@ public class Cadastro extends Pessoa {
                     } else if (lista[2].equals("Medico")) {
                         frmReceitarVacina receitar = new frmReceitarVacina();
                         receitar.setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Dados Inválidos " + user + "! \nverifique seus dados e tente novamente.");
-                    }
+                    } 
                 }
 
                 System.out.printf("%s\n", linha);//imprime todos usuarios no console para facilitar o acesso
 
                 linha = lerArq.readLine(); // lê da segunda até a última linha
 
-            } while (linha != null);
+            } ;
 
             arq.close();
         } catch (IOException e) {

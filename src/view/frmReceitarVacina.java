@@ -27,10 +27,59 @@ import javax.swing.table.TableRowSorter;
 public class frmReceitarVacina extends javax.swing.JFrame {
 
     public void pesquisarAgendamento(String query) {
-        
+
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>();
         jtAgendamentos.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+
+    public void CarregarVacinas() {
+        //Carrega tabela com Vacinas aplicadas
+        String vacinasaplicadas = "C:\\SistemaVacinas\\vacinasaplicadas.txt";
+        File file2 = new File(vacinasaplicadas);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file2));
+//            String firstLine = br.readLine().trim();
+//            String[] NomeColunas = firstLine.split(" ");
+            DefaultTableModel model = (DefaultTableModel) jtVacinasAplicadas.getModel();
+//            model.setColumnIdentifiers(NomeColunas);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(" ");
+                model.addRow(dataRow);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void VacinasReceitadas() {
+
+        String agendamentos = "C:\\SistemaVacinas\\receitas.txt";
+        File file = new File(agendamentos);
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+//            String firstLine = br.readLine().trim();
+//            String[] NomeColunas = firstLine.split(" ");
+            DefaultTableModel model = (DefaultTableModel) jtVacinasReceitadas.getModel();
+//            model.setColumnIdentifiers(NomeColunas);
+
+            Object[] tableLines = br.lines().toArray();
+
+            for (int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(" ");
+                model.addRow(dataRow);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     AgendarConsulta a = new AgendarConsulta();
@@ -51,6 +100,8 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         AplicarVacina av = new AplicarVacina();
         av.CriarVacinas();
+        CarregarVacinas();
+        VacinasReceitadas();
 //Gerador de codigos
         Random gerador = new Random();
         int cod = gerador.nextInt(999);
@@ -128,28 +179,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//Carrega tabela com Vacinas aplicadas
-        String vacinasaplicadas = "C:\\SistemaVacinas\\vacinasaplicadas.txt";
-        File file2 = new File(vacinasaplicadas);
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file2));
-//            String firstLine = br.readLine().trim();
-//            String[] NomeColunas = firstLine.split(" ");
-            DefaultTableModel model = (DefaultTableModel) jtVacinasAplicadas.getModel();
-//            model.setColumnIdentifiers(NomeColunas);
-
-            Object[] tableLines = br.lines().toArray();
-
-            for (int i = 0; i < tableLines.length; i++) {
-                String line = tableLines[i].toString().trim();
-                String[] dataRow = line.split(" ");
-                model.addRow(dataRow);
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(frmAplicarVacina.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         //Pesquisar Agendamentos
     }
 
@@ -168,7 +197,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jpConsultasAgendadas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAgendamentos = new javax.swing.JTable();
@@ -177,29 +206,24 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jcVacina = new javax.swing.JComboBox<>();
         btnReceitar = new javax.swing.JButton();
-        txtPesquisaAgendamento = new javax.swing.JTextField();
-        btnPesquisarAgendamento = new javax.swing.JToggleButton();
-        jPanel2 = new javax.swing.JPanel();
+        jpVacinasAplicadas = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtVacinasAplicadas = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jpVacinasReceitadas = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtVacinasReceitadas = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel11.setText("Cód Consulta:");
 
         txtCodConsulta.setEditable(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(750, 650));
-        getContentPane().setLayout(null);
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(305, 60, 0, 0);
+        setMinimumSize(new java.awt.Dimension(600, 500));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setText("Receitar Vacina");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(280, 10, 137, 24);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/img/back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -207,8 +231,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(10, 10, 50, 50);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Consultas Agendadas");
@@ -218,11 +240,11 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome Paciente", "Idade", "Vacina", "Data Consulta", "Horário", "CPF", "Endereço", "Telefone", "Tipo", "Usuário"
+                "Código", "Nome Paciente", "Idade", "Data Consulta", "Horário", "CPF", "Endereço", "Telefone", "Tipo", "Usuário"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -230,15 +252,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jtAgendamentos);
-        if (jtAgendamentos.getColumnModel().getColumnCount() > 0) {
-            jtAgendamentos.getColumnModel().getColumn(1).setHeaderValue("Nome Paciente");
-            jtAgendamentos.getColumnModel().getColumn(5).setHeaderValue("Horário");
-            jtAgendamentos.getColumnModel().getColumn(6).setHeaderValue("CPF");
-            jtAgendamentos.getColumnModel().getColumn(7).setHeaderValue("Endereço");
-            jtAgendamentos.getColumnModel().getColumn(8).setHeaderValue("Telefone");
-            jtAgendamentos.getColumnModel().getColumn(9).setHeaderValue("Tipo");
-            jtAgendamentos.getColumnModel().getColumn(10).setHeaderValue("Usuário");
-        }
 
         jLabel12.setText("Senha Fila:");
 
@@ -258,85 +271,58 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             }
         });
 
-        txtPesquisaAgendamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisaAgendamentoActionPerformed(evt);
-            }
-        });
-        txtPesquisaAgendamento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPesquisaAgendamentoKeyReleased(evt);
-            }
-        });
-
-        btnPesquisarAgendamento.setText("Pesquisar");
-        btnPesquisarAgendamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarAgendamentoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpConsultasAgendadasLayout = new javax.swing.GroupLayout(jpConsultasAgendadas);
+        jpConsultasAgendadas.setLayout(jpConsultasAgendadasLayout);
+        jpConsultasAgendadasLayout.setHorizontalGroup(
+            jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(515, 522, Short.MAX_VALUE))
+                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
+                        .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
+                                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addGap(17, 17, 17))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultasAgendadasLayout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(18, 18, 18)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPesquisarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 488, Short.MAX_VALUE)))
                         .addContainerGap())))
+            .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
+                .addGap(288, 288, 288)
+                .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jpConsultasAgendadasLayout.setVerticalGroup(
+            jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultasAgendadasLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPesquisarAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPesquisaAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Consultas Agendadas", jPanel1);
+        jTabbedPane1.addTab("Consultas Agendadas", jpConsultasAgendadas);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("Vacinas Aplicadas");
@@ -359,43 +345,109 @@ public class frmReceitarVacina extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jtVacinasAplicadas);
 
-        jToggleButton1.setText("Pesquisar");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpVacinasAplicadasLayout = new javax.swing.GroupLayout(jpVacinasAplicadas);
+        jpVacinasAplicadas.setLayout(jpVacinasAplicadasLayout);
+        jpVacinasAplicadasLayout.setHorizontalGroup(
+            jpVacinasAplicadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpVacinasAplicadasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jpVacinasAplicadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addGroup(jpVacinasAplicadasLayout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
+        jpVacinasAplicadasLayout.setVerticalGroup(
+            jpVacinasAplicadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpVacinasAplicadasLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Vacinas Aplicadas", jPanel2);
+        jTabbedPane1.addTab("Vacinas Aplicadas", jpVacinasAplicadas);
 
-        getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(10, 60, 720, 390);
+        jtVacinasReceitadas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Senha Fila", "Nome", "Vacina", "Idade"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jtVacinasReceitadas);
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setText("Vacinas Receitadas");
+
+        javax.swing.GroupLayout jpVacinasReceitadasLayout = new javax.swing.GroupLayout(jpVacinasReceitadas);
+        jpVacinasReceitadas.setLayout(jpVacinasReceitadasLayout);
+        jpVacinasReceitadasLayout.setHorizontalGroup(
+            jpVacinasReceitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpVacinasReceitadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpVacinasReceitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpVacinasReceitadasLayout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpVacinasReceitadasLayout.setVerticalGroup(
+            jpVacinasReceitadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVacinasReceitadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Vacinas Receitadas", jpVacinasReceitadas);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(228, 228, 228)
+                        .addComponent(jLabel6))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(jLabel3))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -413,7 +465,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
             r.Receitar(senhafila, nome, jcVacina.getSelectedItem().toString(), idade);
         }
-
+        VacinasReceitadas();
 //        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
     }//GEN-LAST:event_btnReceitarActionPerformed
 
@@ -425,21 +477,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnPesquisarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarAgendamentoActionPerformed
-
-
-    }//GEN-LAST:event_btnPesquisarAgendamentoActionPerformed
-
-    private void txtPesquisaAgendamentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaAgendamentoKeyReleased
-        String query = txtPesquisaAgendamento.getText().toLowerCase();
-        
-        pesquisarAgendamento(query);
-    }//GEN-LAST:event_txtPesquisaAgendamentoKeyReleased
-
-    private void txtPesquisaAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaAgendamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesquisaAgendamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,7 +514,6 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnPesquisarAgendamento;
     private javax.swing.JButton btnReceitar;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -487,18 +523,19 @@ public class frmReceitarVacina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JComboBox<String> jcVacina;
+    private javax.swing.JPanel jpConsultasAgendadas;
+    private javax.swing.JPanel jpVacinasAplicadas;
+    private javax.swing.JPanel jpVacinasReceitadas;
     private javax.swing.JTable jtAgendamentos;
     private javax.swing.JTable jtVacinasAplicadas;
+    private javax.swing.JTable jtVacinasReceitadas;
     private javax.swing.JTextField txtCodConsulta;
-    private javax.swing.JTextField txtPesquisaAgendamento;
     private javax.swing.JTextField txtSenhaFila;
     // End of variables declaration//GEN-END:variables
 }
