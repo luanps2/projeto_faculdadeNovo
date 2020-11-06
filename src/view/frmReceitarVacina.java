@@ -280,22 +280,19 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                 .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(515, 522, Short.MAX_VALUE))
+                        .addGap(515, 523, Short.MAX_VALUE))
                     .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                         .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2)
                             .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
-                                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(17, 17, 17))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConsultasAgendadasLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 488, Short.MAX_VALUE)))
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
                 .addGap(288, 288, 288)
@@ -308,16 +305,19 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
+                        .addComponent(txtSenhaFila, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(jpConsultasAgendadasLayout.createSequentialGroup()
+                        .addGroup(jpConsultasAgendadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jcVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(btnReceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -352,7 +352,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
             .addGroup(jpVacinasAplicadasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpVacinasAplicadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
                     .addGroup(jpVacinasAplicadasLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -401,7 +401,7 @@ public class frmReceitarVacina extends javax.swing.JFrame {
                     .addGroup(jpVacinasReceitadasLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpVacinasReceitadasLayout.setVerticalGroup(
@@ -469,14 +469,14 @@ public class frmReceitarVacina extends javax.swing.JFrame {
 //        r.Receitar(txtSenhaFila.getText(), jcPaciente.getSelectedItem().toString(), jcVacina.getSelectedItem().toString(), (txtIdadeP.getText()));
     }//GEN-LAST:event_btnReceitarActionPerformed
 
-    private void txtSenhaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaFilaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaFilaActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtSenhaFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaFilaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaFilaActionPerformed
 
     /**
      * @param args the command line arguments

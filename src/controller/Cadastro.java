@@ -204,6 +204,7 @@ public class Cadastro extends Pessoa {
     public void logintexto(String user, String pass) {
 
         Session s = new Session();
+        int fal = 0; 
 
         try {
             FileReader arq = new FileReader("C:\\SistemaVacinas\\usuarios.txt");
@@ -212,8 +213,7 @@ public class Cadastro extends Pessoa {
             String linha = lerArq.readLine(); // lê a primeira linha
 // a variável "linha" recebe o valor "null" quando o processo
 // de repetição atingir o final do arquivo texto
-            while (linha != null) {
-
+            while(linha != null){
                 String[] lista = linha.split(" ");
 
                 if (lista[0].equals(user) && lista[1].equals(pass)) {
@@ -222,15 +222,23 @@ public class Cadastro extends Pessoa {
                     if (lista[2].equals("Paciente")) {
                         frmAgendarConsulta agendar = new frmAgendarConsulta();
                         agendar.setVisible(true);
+                        fal = 0;
                     } else if (lista[2].equals("Enfermeira")) {
                         frmAplicarVacina aplicar = new frmAplicarVacina();
                         aplicar.setVisible(true);
+                        fal = 0;
                     } else if (lista[2].equals("Medico")) {
                         frmReceitarVacina receitar = new frmReceitarVacina();
                         receitar.setVisible(true);
-                    } 
+                        fal = 0;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Dados Inválidos " + user + "! \nverifique seus dados e tente novamente.");
+                    }
+                }else if(lista[0].equals(user) && lista[1] != pass){
+                    fal++;
+                }else if(lista[0] != user && lista[1].equals(pass)){
+                    fal++;
                 }
-
                 System.out.printf("%s\n", linha);//imprime todos usuarios no console para facilitar o acesso
 
                 linha = lerArq.readLine(); // lê da segunda até a última linha
@@ -242,6 +250,13 @@ public class Cadastro extends Pessoa {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
+        
+            if(fal >= 1){
+            JOptionPane.showMessageDialog(null, "Algum dado foi inserido incorretamente", "dados incorretos", JOptionPane.ERROR_MESSAGE);
+        }else if(user == null && pass == null && fal > 0){
+            JOptionPane.showMessageDialog(null, "nenhum dado foi inserido!", "campos em branco", JOptionPane.WARNING_MESSAGE);
+        }
+
 
 //        for (Paciente p : paciente) {
 //            if (user.equals(p.getUsuario()) && senha.equals(p.getSenha())) {
